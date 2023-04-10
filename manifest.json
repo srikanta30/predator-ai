@@ -1,0 +1,72 @@
+{
+    "name": "Predator AI - Powered by ChatGPT",
+    "description": "Predator helps you use ChatGPT on any website.",
+    "author": "Srikanta Banerjee",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "permissions": ["storage", "activeTab"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_icon": "icons/predator.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/predator.png",
+        "32": "icons/predator.png",
+        "48": "icons/predator.png",
+        "128": "icons/predator.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "exclude_matches": ["*://teams.microsoft.com/*","*://leetcode.com/*", "*://mail.google.com/*", "*://twitter.com/*", "*://docs.google.com/spreadsheets/*", "*://*.facebook.com/*", "*://*.reddit.com/*"],
+            "runAt": "document_end",
+            "js": ["common.js", "all.js", "event.js"],
+            "all_frames": true
+        },
+        {
+            "matches": ["*://mail.google.com/*"],
+            "js": ["common.js", "all.js","sites/gmail.js"],
+            "run_at": "document_end"
+            
+        },
+        {
+            "matches": ["*://twitter.com/*"],
+            "js": ["common.js","sites/twitter.js", "event.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://leetcode.com/*"],
+            "js": ["common.js","sites/leetcode.js", "event.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://docs.google.com/spreadsheets/*"],
+            "js": ["common.js","sites/google-sheet.js", "event.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.facebook.com/*"],
+            "js": ["common.js","sites/facebook.js", "event.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.reddit.com/*"],
+            "js": ["common.js","sites/reddit.js", "event.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://teams.microsoft.com/*"],
+            "js": ["common.js","sites/teams.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["icons/loading.gif"],
+            "matches": ["https://*/*"],
+            "all_frames":true
+        } 
+    ]
+}
