@@ -26,7 +26,6 @@ const makeChatGPTCall = async (text, node) => {
     return text;
   }
 
-  //   console.log(text, node);
   toggleLoadingIcon(node);
   try {
     const myHeaders = new Headers();
